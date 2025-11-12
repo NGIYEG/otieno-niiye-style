@@ -1,12 +1,29 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, Sun, Moon, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
+import { useAuth } from "@/hooks/useAuth";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { user, isAdmin, signOut } = useAuth();
+  const [profilePic, setProfilePic] = useState<string | null>(null);
+
+  useEffect(() => {
+    // For now using a placeholder - you can update this with your actual photo
+    setProfilePic("https://api.dicebear.com/7.x/avataaars/svg?seed=George");
+  }, []);
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -23,9 +40,12 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">G</span>
-            </div>
+            <Avatar className="w-10 h-10">
+              <AvatarImage src={profilePic || undefined} alt="George Ngiye" />
+              <AvatarFallback className="bg-primary text-primary-foreground font-bold">
+                G
+              </AvatarFallback>
+            </Avatar>
             <span className="font-bold text-xl">
               <span className="text-primary">George</span>
               <span className="text-foreground"> Ngiye</span>
@@ -59,7 +79,35 @@ const Navigation = () => {
                 <Moon className="h-5 w-5" />
               )}
             </Button>
-            <Button className="hidden md:flex">Hire Me</Button>
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="rounded-full hidden md:flex">
+                    <User className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  {isAdmin && (
+                    <DropdownMenuItem asChild>
+                      <Link to="/blog/create">Create Blog Post</Link>
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuItem onClick={signOut}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button asChild variant="outline" className="hidden md:flex">
+                <Link to="/auth">Sign In</Link>
+              </Button>
+            )}
+            <Button className="hidden md:flex" asChild>
+              <Link to="/contact">Hire Me</Link>
+            </Button>
 
             {/* Mobile Menu Button */}
             <Button
