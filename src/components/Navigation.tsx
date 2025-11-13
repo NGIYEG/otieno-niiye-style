@@ -100,11 +100,7 @@ const Navigation = () => {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-            ) : (
-              <Button asChild variant="outline" className="hidden md:flex">
-                <Link to="/auth">Sign In</Link>
-              </Button>
-            )}
+            ) : null}
             <Button className="hidden md:flex" asChild>
               <Link to="/contact">Hire Me</Link>
             </Button>
