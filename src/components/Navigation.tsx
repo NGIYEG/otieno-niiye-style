@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Sun, Moon, LogOut, User } from "lucide-react";
+import { Menu, X, Sun, Moon, LogOut, User, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { useAuth } from "@/hooks/useAuth";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import profileImage from "@/assets/george-profile.jpg";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -35,12 +33,9 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <Avatar className="w-10 h-10">
-              <AvatarImage src={profileImage} alt="George Ngiye" />
-              <AvatarFallback className="bg-primary text-primary-foreground font-bold">
-                G
-              </AvatarFallback>
-            </Avatar>
+            <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Code2 className="h-6 w-6 text-primary" />
+            </div>
             <span className="font-bold text-xl">
               <span className="text-primary">George</span>
               <span className="text-foreground"> Ngiye</span>

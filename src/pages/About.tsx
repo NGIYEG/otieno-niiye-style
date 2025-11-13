@@ -34,12 +34,14 @@ const About = () => {
       <div className="container mx-auto max-w-6xl">
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
           <div className="flex justify-center">
-            <div className="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
-              <img 
-                src={profileImage} 
-                alt="George Otieno Ngiye"
-                className="w-full h-full object-cover"
-              />
+            <div className="relative w-72 h-72 md:w-96 md:h-96">
+              <div className="w-full h-full rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
+                <img 
+                  src={profileImage} 
+                  alt="George Otieno Ngiye"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
           
@@ -65,6 +67,32 @@ const About = () => {
             </Button>
           </div>
         </div>
+
+        {/* GitHub Activity Section */}
+        <section className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">GitHub Activity</h2>
+            <p className="text-muted-foreground">Check out my recent contributions and projects.</p>
+          </div>
+          
+          <div className="flex flex-col items-center gap-6">
+            <a 
+              href="https://github.com/NGIYEG" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-primary hover:underline"
+            >
+              View Full GitHub Profile →
+            </a>
+            <div className="w-full max-w-4xl">
+              <img 
+                src="https://ghchart.rrampage.workers.dev/NGIYEG" 
+                alt="GitHub Contribution Chart"
+                className="w-full rounded-lg border border-border"
+              />
+            </div>
+          </div>
+        </section>
 
         {/* Tech Stack Section */}
         <section className="mb-20">
