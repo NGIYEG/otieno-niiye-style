@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Download } from "lucide-react";
+import profileImage from "@/assets/george-profile.jpg";
 
 const About = () => {
   const techStack = [
@@ -35,7 +36,7 @@ const About = () => {
           <div className="flex justify-center">
             <div className="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
               <img 
-                src="https://api.dicebear.com/7.x/avataaars/svg?seed=George" 
+                src={profileImage} 
                 alt="George Otieno Ngiye"
                 className="w-full h-full object-cover"
               />

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { useAuth } from "@/hooks/useAuth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import profileImage from "@/assets/george-profile.jpg";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,12 +19,6 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const { user, isAdmin, signOut } = useAuth();
-  const [profilePic, setProfilePic] = useState<string | null>(null);
-
-  useEffect(() => {
-    // For now using a placeholder - you can update this with your actual photo
-    setProfilePic("https://api.dicebear.com/7.x/avataaars/svg?seed=George");
-  }, []);
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -41,7 +36,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <Avatar className="w-10 h-10">
-              <AvatarImage src={profilePic || undefined} alt="George Ngiye" />
+              <AvatarImage src={profileImage} alt="George Ngiye" />
               <AvatarFallback className="bg-primary text-primary-foreground font-bold">
                 G
               </AvatarFallback>
