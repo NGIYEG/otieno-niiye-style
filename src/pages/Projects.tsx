@@ -2,23 +2,35 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import poliagentxImage from "@/assets/poliagentx-hero.jpg";
-import nestifyImage from "@/assets/nestify-hero.jpg";
 
 const projects = [
   {
-    id: "poliagentx",
-    title: "PoliagentX",
-    description: "Policy tracking and monitoring tool that tracks government spending and outcomes. A development predictive platform.",
-    image: poliagentxImage,
-    tags: ["Django", "Python", "AI/ML", "Data Analytics"],
+    id: "ecommerce-website",
+    title: "E-Commerce Website",
+    description: "Online store with inventory and payment integration.",
+    image: "https://i.pinimg.com/736x/3b/be/0e/3bbe0e1baa1e2a23a19451ea2b849d50.jpg",
+    tags: ["React", "Node.js", "WooCommerce"],
   },
   {
-    id: "nestify",
-    title: "Nestify",
-    description: "House mapping platform with AI location recommendations for rentals and accommodations. Helps users find properties in proximity to specific locations.",
-    image: nestifyImage,
-    tags: ["Django","React", "Maps API", "Node.js"],
+    id: "corporate-website",
+    title: "Business/Corporate Website",
+    description: "Custom WordPress theme for corporate clients.",
+    image: "https://i.pinimg.com/736x/23/62/53/2362533bb08b7ee2a4901a26e2c948aa.jpg",
+    tags: ["WordPress", "PHP", "JavaScript"],
+  },
+  {
+    id: "pos-system",
+    title: "POS System (Web + Desktop App)",
+    description: "Multi-platform POS built with Electron, React, and Node.js.",
+    image: "https://images.unsplash.com/photo-1726065235221-78562122baf3?w=1080&q=80",
+    tags: ["Electron", "React", "Node.js", "MongoDB"],
+  },
+  {
+    id: "mpesa-api",
+    title: "MPesa API Integration",
+    description: "Secure payment API integration into eCommerce systems.",
+    image: "https://th.bing.com/th/id/R.20e671141b72ad9f6db9a4e2ab3d0a28?rik=uP4j%2bLQoH3ey2g&pid=ImgRaw&r=0",
+    tags: ["MPesa API", "Python", "Django"],
   },
 ];
 
