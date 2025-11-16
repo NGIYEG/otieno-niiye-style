@@ -30,7 +30,7 @@ const Projects = () => {
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">All Projects</h2>
-          <p className="text-muted-foreground">A showcase of my work in web development.</p>
+          <p className="text-muted-foreground">A showcase of my work in software development.</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
