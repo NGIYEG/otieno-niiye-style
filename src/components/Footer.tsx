@@ -2,8 +2,54 @@ import { Github, Linkedin, Twitter, Mail, Facebook } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email) {
+      toast({
+        title: "Error",
+        description: "Please enter your email address",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubscribing(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('newsletter-subscribe', {
+        body: { email }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Success!",
+        description: data.message || "Successfully subscribed to newsletter!",
+      });
+
+      setEmail("");
+    } catch (error: any) {
+      console.error('Error subscribing to newsletter:', error);
+      toast({
+        title: "Error",
+        description: error.message || "Failed to subscribe. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
+
   return (
     <footer className="border-t border-border bg-background">
       <div className="container mx-auto px-4 py-12">
@@ -86,16 +132,19 @@ const Footer = () => {
             <p className="text-muted-foreground text-sm mb-4">
               Subscribe to get updates on new projects and articles.
             </p>
-            <div className="flex flex-col sm:flex-row gap-2">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2">
               <Input
                 type="email"
                 placeholder="Your email"
                 className="flex-1"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
-              <Button variant="default">
-                Subscribe
+              <Button type="submit" variant="default" disabled={isSubscribing}>
+                {isSubscribing ? "Subscribing..." : "Subscribe"}
               </Button>
-            </div>
+            </form>
           </div>
         </div>
 
