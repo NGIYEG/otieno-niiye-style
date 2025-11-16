@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Code2, ShoppingCart, Smartphone, Database } from "lucide-react";
+import { Code2, ShoppingCart, Smartphone, Database, MonitorSmartphone, Search } from "lucide-react";
 
 const services = [
   {
@@ -21,6 +21,16 @@ const services = [
     icon: Database,
     title: "API Integration",
     description: "Connect your systems with third-party services and APIs.",
+  },
+  {
+    icon: MonitorSmartphone,
+    title: "Mobile Development",
+    description: "Native and cross-platform mobile applications for iOS and Android.",
+  },
+  {
+    icon: Search,
+    title: "SEO Optimization",
+    description: "Improve your website's visibility and ranking in search engines.",
   },
 ];
 
